@@ -1,0 +1,8 @@
+@import './abstracts/functions';
+@import './abstracts/mixins';
+@import './abstracts/variables';
+@import './base/base';
+
+
+@import '../components/shared/navbar/navbar';
+@import '../components/shared/modal/modal';
