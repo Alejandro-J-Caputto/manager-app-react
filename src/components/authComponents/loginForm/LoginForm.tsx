@@ -1,14 +1,74 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useForm, Validatable } from '../../../hooks/useForm'
 
 export const LoginForm = () => {
  
+  const [validEmail, setValidEmail] = useState(false);
+  const [validPassword, setValidPassword] = useState(true);
+  const [leftInput, setLeftInput] = useState(false)
   
+  const {formValues, handleInputChange, customValidator, typing, setTyping} = useForm({email: '', password: ''})
+  const {email, password} = formValues;
+
+  const emailIsValid:Validatable = {
+    value: email,
+    required: true,
+    type: 'email',
+    min: 3
+  }
+
+  const passwordIsValid:Validatable = {
+    value: password,
+    required: true,
+    minLength: 4,
+    maxLength: 15,
+  }
+  useEffect(() => {
+    
+    const debounce = setTimeout(()=> {
+      setTyping(true)
+      if(customValidator(emailIsValid) && typing === true){
+        setValidEmail(true)
+        setLeftInput(true)
+      } 
+      if(customValidator(passwordIsValid) && typing === true){
+        setValidPassword(true)
+        setLeftInput(true)
+      } 
+
+    },500)
+    return () => {
+      clearTimeout(debounce)
+    }
+  }, [email, password])
+
+  const onBlurHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    const target = event.target as HTMLInputElement
+    const inputElement = target.name;
+    let valid = false;
+    if(inputElement === 'email') {
+      valid = customValidator(emailIsValid);
+      setValidEmail(valid)
+      setTyping(true)
+      setLeftInput(true)
+    }
+    if(inputElement === 'password') {
+      valid = customValidator(passwordIsValid);
+      setValidPassword(valid)
+      setTyping(true)
+      setLeftInput(true)
+    }
+    console.log(valid)
+    return valid;
+  }
 
   const onSubmitLoginHandler = (event:React.FormEvent) => {
+    event.preventDefault();
     console.log('me dispare submit')
-    console.log(event)
+    
   }
+  
 
   return (
     <div className="auth-card">
@@ -19,8 +79,11 @@ export const LoginForm = () => {
         <div className="auth-card__form__group">
           <input
             name="email"
-            className="auth-card__form__input"
+            value={email}
+            onBlur={onBlurHandler}
+            className={ `auth-card__form__input ${!validEmail && typing && leftInput ? 'auth__error' : ''}`}
             type="email"
+            onChange={handleInputChange}
             required
             placeholder="Email Address"
             id="email" />
@@ -30,7 +93,10 @@ export const LoginForm = () => {
         <div className="auth-card__form__group">
           <input
             name="password"
-            className="auth-card__form__input"
+            value={password}
+            onChange={handleInputChange}
+            onBlur={onBlurHandler}
+            className={ `auth-card__form__input ${!validPassword && typing && leftInput ? 'auth__error' : ''}`}
             type="password"
             required
             placeholder="Email Address"
