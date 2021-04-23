@@ -6,7 +6,7 @@ import { WorkspacesAll } from '../../../components/managerAppComponents/workspac
 import { Sidebar } from '../../../components/shared/sidebar/Sidebar'
 import { DynamicContainer } from '../../../layout/dynamicContainer/DynamicContainer'
 
-export const HomePage = ({ children }) => {
+export const HomePage = () => {
   return (
     <>
     <div className="section-home">

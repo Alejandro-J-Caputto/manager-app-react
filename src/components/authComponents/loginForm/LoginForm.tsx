@@ -5,7 +5,7 @@ export const LoginForm = () => {
  
   
 
-  const onSubmitLoginHandler = (event) => {
+  const onSubmitLoginHandler = (event:React.FormEvent) => {
     console.log('me dispare submit')
     console.log(event)
   }

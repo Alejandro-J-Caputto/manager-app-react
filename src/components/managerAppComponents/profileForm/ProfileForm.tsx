@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const ProfileForm = ({ classes }) => {
+export const ProfileForm = ({ classes }:{classes:string}) => {
   return (
     <div className={classes}>
       <form action="" className="profile-form__form">

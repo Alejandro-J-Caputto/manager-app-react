@@ -1,6 +1,6 @@
 import React from 'react'
 import ProfilePic from '../../../assets/img/user-img-default.png'
-export const ProfilePhoto = ({ classes }) => {
+export const ProfilePhoto = ({ classes }:{classes:string}) => {
   console.log(classes)
 
   const stylesPic = {
