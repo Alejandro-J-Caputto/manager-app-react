@@ -5,8 +5,9 @@ import { useForm, Validatable } from '../../../hooks/useForm'
 export const LoginForm = () => {
  
   const [validEmail, setValidEmail] = useState(false);
-  const [validPassword, setValidPassword] = useState(true);
-  const [leftInput, setLeftInput] = useState(false)
+  const [validPassword, setValidPassword] = useState(false);
+  const [leftInputEmail, setLeftInputEmail] = useState(false)
+  const [leftInputPassword, setLeftInputPassword] = useState(false)
   
   const {formValues, handleInputChange, customValidator, typing, setTyping} = useForm({email: '', password: ''})
   const {email, password} = formValues;
@@ -27,14 +28,14 @@ export const LoginForm = () => {
   useEffect(() => {
     
     const debounce = setTimeout(()=> {
-      setTyping(true)
+      // setTyping(true)
       if(customValidator(emailIsValid) && typing === true){
         setValidEmail(true)
-        setLeftInput(true)
+        setLeftInputEmail(true)
       } 
       if(customValidator(passwordIsValid) && typing === true){
         setValidPassword(true)
-        setLeftInput(true)
+        setLeftInputPassword(true)
       } 
 
     },500)
@@ -48,16 +49,18 @@ export const LoginForm = () => {
     const inputElement = target.name;
     let valid = false;
     if(inputElement === 'email') {
+      console.log('hello')
       valid = customValidator(emailIsValid);
       setValidEmail(valid)
       setTyping(true)
-      setLeftInput(true)
+      setLeftInputEmail(true)
     }
-    if(inputElement === 'password') {
+    if(inputElement === 'password') { 
       valid = customValidator(passwordIsValid);
       setValidPassword(valid)
+      console.log(validPassword, 'aca')
       setTyping(true)
-      setLeftInput(true)
+      setLeftInputPassword(true)
     }
     console.log(valid)
     return valid;
@@ -81,7 +84,7 @@ export const LoginForm = () => {
             name="email"
             value={email}
             onBlur={onBlurHandler}
-            className={ `auth-card__form__input ${!validEmail && typing && leftInput ? 'auth__error' : ''}`}
+            className={ `auth-card__form__input ${!validEmail && typing && leftInputEmail ? 'auth__error' : ''}`}
             type="email"
             onChange={handleInputChange}
             required
@@ -96,10 +99,10 @@ export const LoginForm = () => {
             value={password}
             onChange={handleInputChange}
             onBlur={onBlurHandler}
-            className={ `auth-card__form__input ${!validPassword && typing && leftInput ? 'auth__error' : ''}`}
+            className={ `auth-card__form__input ${!validPassword && typing && leftInputPassword ? 'auth__error' : ''}`}
             type="password"
             required
-            placeholder="Email Address"
+            placeholder="password"
             id="password" />
           <label htmlFor="password" className="auth-card__form__label">Password</label>
           {/* <p className="auth__error">The password is required</p> */}

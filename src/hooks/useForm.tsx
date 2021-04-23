@@ -1,6 +1,7 @@
 import { ChangeEvent, useState } from 'react'
 export interface Validatable {
   value: string | number | Date;
+  valueCompare?: string | number
   type?: string
   required?: boolean;
   minLength?: number;
@@ -46,6 +47,9 @@ export const useForm = <T extends Object>(initialState: T) => {
     }
     if (validableInput.max != null && typeof validableInput.value === 'number') {
       isValid = isValid && validableInput.value < validableInput.max
+    }
+    if (validableInput.valueCompare) {
+      isValid = isValid && validableInput.valueCompare === validableInput.value
     }
     return isValid
 
