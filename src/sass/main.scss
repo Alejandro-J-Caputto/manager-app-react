@@ -3,7 +3,12 @@
 @import './abstracts/variables';
 @import './base/base';
 
-
+@import './smallComponents/buttons';
 @import '../components/shared/navbar/navbar';
 @import '../components/shared/sidebar/sidebar';
 @import '../components/shared/modal/modal';
+@import '../components/managerAppComponents/Search/search';
+@import '../components/shared/workspaceCard/workspaceCard';
+
+@import '../pages/managerAppPages/homePage/homePage';
+@import '../pages/managerAppPages/profilePage/profile';

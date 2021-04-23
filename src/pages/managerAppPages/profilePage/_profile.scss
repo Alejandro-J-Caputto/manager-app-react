@@ -1,0 +1,147 @@
+.section-profile  {
+  display: flex;
+  flex-direction: column;
+  // background-color: khaki;
+  min-height: 100vh;
+  // padding: 4rem;
+  @include responsive(phone) {
+    padding: unset;
+  }
+}
+.profile-menu {
+  position: relative;
+  // align-self: center;
+  display: flex;
+  flex-grow: 1;
+  // background-color: lightcoral;
+  width: 100%;
+  height: 100%;
+  // box-shadow: $shadow-dark;
+  // border-radius: 8px;
+  overflow: hidden;
+  @include responsive(tab-land) {
+    width: 100%;
+    height: 100%;
+    // margin-top: -4rem;
+    overflow: unset;
+  }
+  @include responsive(tab-port) {
+    flex-direction: column;
+    overflow: unset;
+  }
+  @include responsive(phone) {
+    width: 100%;
+
+  }
+}
+
+.profile-content {
+  padding-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  // background-color: mediumorchid;
+  flex: 1;
+  padding-bottom: 4rem;
+}
+.heading-primary {
+  align-self: start;
+  @include responsive(phone) {
+
+   align-self: center;
+  }
+}
+.profile-content-display {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  // background-color: mediumseagreen;
+  width: 80%;
+  & * :not(.profile-picture, .profile-picture img, .error-form){
+    margin-bottom: 2rem;
+  }
+}
+
+.profile-picture {
+  align-self: center;
+  // background-color: blueviolet;
+  display: flex; 
+  flex-direction: column;
+  position: relative;
+  // border-radius: 50%;
+  // height: 21rem;
+  // width: 21rem;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  & div {
+    align-self: center;
+    background-size: cover;
+    background-position: center;
+    margin-top: 2rem;
+    height: 20rem;
+    width: 20rem;
+    // border-radius: 50%;
+
+  }
+  &__file {
+    position: absolute;
+    bottom: 0;
+    color: transparent;
+    padding: 1.5rem;
+    cursor: pointer;
+    z-index: 200;
+
+  }
+  &__file:focus {
+    outline: none;
+  }
+  &__file::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  i {
+    bottom: 10px;
+    color:white;
+    font-size: 3.8rem;
+    position: absolute;
+    z-index: 100;
+  }
+}
+.profile-form {
+  align-self: center;
+  // background-color: mediumturquoise;
+  width: 80%;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    &__group {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+      align-self: center;
+      margin-bottom: 3rem;
+      // background-color: mediumvioletred;
+      @include responsive(phone) {
+        width: 100%;
+      }
+    }
+    &__input {
+      font-size: inherit;
+      font-family: inherit;
+      padding: 1rem;
+    }
+    &__label {
+
+    }
+  }
+}
+
+.error-form {
+  border-radius: 12px;
+  background-color: lightcoral;
+  color: white;
+  padding: 1rem;
+  margin-top: 4px;
+
+  
+}

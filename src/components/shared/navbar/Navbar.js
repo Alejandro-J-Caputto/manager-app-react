@@ -25,9 +25,9 @@ export const Navbar = () => {
           <img src="" alt="profile-photo"/>
         </NavLink>
 
-        <Link className="navbar__list-item" activeClassName="active-link-nav"  to="/auth/login">
+        <NavLink className="navbar__list-item" activeClassName="active-link-nav"  to="/auth/login">
           <i className="navbar__list-item-icon--logout fas fa-sign-out-alt"></i>
-        </Link>
+        </NavLink>
 
       </div>
 
