@@ -1,21 +1,15 @@
 import React from 'react'
-
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import { AuthRouter } from '../authRouter/AuthRouter';
-import { ManagerAppRouter } from '../managerAppRouter/ManagerAppRouter';
-
-
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Authorization } from '../../pages/authPages/Authorization'
+import { ManagerAppRouter } from '../managerAppRouter/ManagerAppRouter'
 
 export const AppRouter = () => {
   return (
-    <Router>
-      <div>
-        <Switch>
-          <Route path='/' component={ManagerAppRouter}></Route>
-          <Route path='/auth' component={AuthRouter}></Route>
-          <Redirect to='/'/>
-        </Switch>
-      </div>
-    </Router>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/auth" component={Authorization}></Route>
+        <Route path="/manager-app" component={ManagerAppRouter}></Route>
+      </Switch>
+    </BrowserRouter>
   )
 }

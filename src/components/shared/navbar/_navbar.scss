@@ -1,0 +1,115 @@
+.navbar {
+  height: 5rem;
+  color: $color-white;
+  background-color: $color-angular-blue-dark;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  opacity: .80;
+  z-index: 200000;
+  @include responsive(phone) {
+    // order: 1;
+    position: fixed;
+    margin-bottom: 0rem;
+    z-index: 1000;
+    bottom: 0;
+  }
+
+  &-down-list {
+    cursor: unset;
+    visibility: hidden;
+    color: $color-grey-dark-1;
+    background-color: white;
+    list-style: none;
+    position: absolute;
+    left: -3rem;
+    top: 125%;
+    z-index: 90000;
+    padding: 0rem 5rem;
+    @include responsive(phone) {
+      bottom: 100%;
+      top: unset;
+      left: -2rem;
+      padding: 0rem 5rem;
+    }
+    &__item {
+      padding: 2rem;
+      // color: $color-white;
+    }
+  }
+  &__link {
+    position: relative;
+  }
+  &__link:link, 
+  &__link:visited,
+  &__link:active,
+  &__link:focus{
+    color: $color-white;
+    text-decoration: none;
+    outline: none;
+  }
+  &__list-item:hover .navbar-down-list{
+    visibility: visible;
+  }
+ 
+
+  &__logo-box {
+   flex: 0 0 20%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+  }
+  &__logo {
+    font-size: 4.4rem;
+  }
+  &__list {
+    position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    @include responsive(phone) {
+      flex: 0 0 60%;  
+      justify-content: flex-end;
+     }
+    &-item {
+      align-items: center;
+      color: white;
+      display: flex;
+      padding: 0 3rem;
+      height: 5rem;
+     
+      @include responsive(phone) {
+       padding: 0 2rem;
+       margin-right: -0px;
+      }
+      &:hover,
+      &:active {
+        background-color: $color-angular-blue-light;
+        cursor: pointer;
+      }
+      &-user-photo {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+      }
+      &-icon--settings {
+        font-size: 3rem;  
+      }
+      &-icon--logout {
+        font-size: 3rem;
+      }
+    }
+  }
+}
+.workspace__name {
+  font-size: 2rem;
+  padding: 1rem 2rem;
+}
+
+.active-link-nav {
+  background-color: $color-angular-blue-dark;
+  outline: none;
+  color: white;
+}
