@@ -2,13 +2,16 @@
 @import './abstracts/mixins';
 @import './abstracts/variables';
 @import './base/base';
+@import './typography/typography';
 
 @import './smallComponents/buttons';
 @import '../components/shared/navbar/navbar';
 @import '../components/shared/sidebar/sidebar';
 @import '../components/shared/modal/modal';
 @import '../components/managerAppComponents/Search/search';
+@import '../components/authComponents/authForms';
 @import '../components/shared/workspaceCard/workspaceCard';
 
 @import '../pages/managerAppPages/homePage/homePage';
 @import '../pages/managerAppPages/profilePage/profile';
+@import '../pages/authPages/authorizations';

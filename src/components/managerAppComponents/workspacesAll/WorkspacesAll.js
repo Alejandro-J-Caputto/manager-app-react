@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { WorkspaceCard } from '../../shared/workspaceCard/WorkspaceCard'
 
 export const WorkspacesAll = () => {

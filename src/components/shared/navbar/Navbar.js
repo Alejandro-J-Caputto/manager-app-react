@@ -22,7 +22,7 @@ export const Navbar = () => {
         </NavLink>
 
         <NavLink className="navbar__list-item" activeClassName="active-link-nav" to="/manager-app/profile">
-          <img src="" alt="profile-photo"/>
+          <img src="" alt="profile"/>
         </NavLink>
 
         <NavLink className="navbar__list-item" activeClassName="active-link-nav"  to="/auth/login">

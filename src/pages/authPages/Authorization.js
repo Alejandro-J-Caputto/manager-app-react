@@ -5,7 +5,7 @@ import { RegisterForm } from '../../components/authComponents/registerForm/Regis
 
 export const Authorization = () => {
   return (
-    <div>
+    <div className="section__auth">
       <Route path="/auth/login" component={LoginForm}></Route>
       <Route path="/auth/register" component={RegisterForm}></Route>
     </div>

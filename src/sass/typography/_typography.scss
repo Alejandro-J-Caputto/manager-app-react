@@ -1,0 +1,23 @@
+.heading-secondary {
+  font-weight: 600;
+  font-size: 3.5rem;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+  backface-visibility: hidden;
+  background-image: linear-gradient(
+    to right,
+    $color-react-light,
+    $color-react-dark
+  );
+  -webkit-background-clip: text;
+
+  color: transparent;
+  @include responsive(phone) {
+    background-image: none;
+    color: $color-white;
+  }
+}
+.paragraph {
+  margin-bottom: 10px;
+  // color: white;
+}
