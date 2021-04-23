@@ -3,9 +3,16 @@ import { NavLink } from 'react-router-dom'
 
 export const LoginForm = () => {
  
+  
+
+  const onSubmitLoginHandler = (event) => {
+    console.log('me dispare submit')
+    console.log(event)
+  }
+
   return (
     <div className="auth-card">
-      <form action="" autoComplete="off" className="auth-card__form">
+      <form onSubmit={onSubmitLoginHandler} autoComplete="off" className="auth-card__form">
         <h2 className="heading-secondary u-margin-bottom-small u-margin-top">
           Manager-App
         </h2>
