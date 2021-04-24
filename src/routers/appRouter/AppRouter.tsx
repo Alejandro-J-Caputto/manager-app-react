@@ -6,13 +6,13 @@ import { ManagerAppRouter } from '../managerAppRouter/ManagerAppRouter'
 
 export const AppRouter = () => {
   const AuthContext = useContext(AuthContextHook);
-  const {isLoggedIn, onLogin, onLogout, onRegister} = AuthContext;
+  const {isLoggedIn} = AuthContext;
   return (
     <BrowserRouter>
       <Switch>
         {!isLoggedIn && <Route path="/auth" component={Authorization}></Route>}
         {isLoggedIn && <Route path="/manager-app" component={ManagerAppRouter}></Route>}
-        {isLoggedIn ? <Redirect to="/manager-app"/> : <Redirect to="/auth/login"/>}
+        {isLoggedIn ? <Redirect to="/manager-app/home/overview"/> : <Redirect to="/auth/login"/>}
       </Switch>
     </BrowserRouter>
   )

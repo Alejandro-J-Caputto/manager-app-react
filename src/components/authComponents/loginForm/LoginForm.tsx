@@ -1,16 +1,19 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo, useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useForm, Validatable } from '../../../hooks/useForm'
+import { AuthContextHook } from '../../../store/authContext/auth-context'
 
 export const LoginForm = () => {
+
+  const AuthContext = useContext(AuthContextHook);
+  const {onLogin} = AuthContext;
+
 
   const [validEmail, setValidEmail] = useState(false);
   const [validPassword, setValidPassword] = useState(false);
   const [leftInputEmail, setLeftInputEmail] = useState(false)
   const [leftInputPassword, setLeftInputPassword] = useState(false)
   const [validForm, setValidForm] = useState({ isValid: false, leftIntput: false })
-
-
   const { formValues, handleInputChange, customValidator, typing, setTyping } = useForm({ email: '', password: '' })
   const { email, password } = formValues;
 
@@ -84,9 +87,9 @@ export const LoginForm = () => {
       setValidForm((prev) => {
         return { ...prev, isValid: true }
       })
+      return;
     }
-    console.log('me dispare submit')
-
+    onLogin(email, password);
   }
 
 
