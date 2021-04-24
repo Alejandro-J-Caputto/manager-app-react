@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useCallback, useState } from 'react'
 export interface Validatable {
   value: string | number | Date;
   valueCompare?: string | number
@@ -28,7 +28,7 @@ export const useForm = <T extends Object>(initialState: T) => {
     setFormValues(newFormState)
   }
 
-  const customValidator = (validableInput: Validatable) => {
+  const customValidator = useCallback((validableInput: Validatable) => {
     let isValid = true;
     if (validableInput.required) {
       isValid = isValid && validableInput.value.toString().trim().length !== 0;
@@ -53,7 +53,7 @@ export const useForm = <T extends Object>(initialState: T) => {
     }
     return isValid
 
-  }
+  }, [])
 
   return { formValues, handleInputChange, reset, customValidator, typing, setTyping }
 }
