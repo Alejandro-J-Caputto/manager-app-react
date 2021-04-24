@@ -46,7 +46,6 @@ export const RegisterForm = () => {
     const inputElement = target.name;
     let valid = false;
     if (inputElement === 'name') {
-      console.log('hello')
       valid = customValidator(nameIsValid);
       setValidName((prevValue) => {
         return { leftInput: true, isValid: valid }
@@ -75,7 +74,6 @@ export const RegisterForm = () => {
       })
       setTyping(true)
     }
-    console.log(valid)
     return valid;
   }
 
@@ -92,7 +90,6 @@ export const RegisterForm = () => {
       // setTyping(true)
       if (customValidator(nameIsValid) && typing === true) {
         setValidName((prevValue) => {
-          console.log(prevValue)
           return { leftInput: true, isValid: true }
         })
       }

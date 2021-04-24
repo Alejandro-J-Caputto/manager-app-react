@@ -14,19 +14,6 @@ export const LoginForm = () => {
   const { formValues, handleInputChange, customValidator, typing, setTyping } = useForm({ email: '', password: '' })
   const { email, password } = formValues;
 
-  // const emailIsValid: Validatable = {
-  //   value: email,
-  //   required: true,
-  //   type: 'email',
-  //   min: 3
-  // } 
-
-  // const passwordIsValid: Validatable = {
-  //   value: password,
-  //   required: true,
-  //   minLength: 4,
-  //   maxLength: 15,
-  // }
   const passwordIsValid: Validatable = useMemo(() => {
     return {
       value: password,
