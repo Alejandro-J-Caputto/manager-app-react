@@ -1,13 +1,13 @@
 
-interface Login {
+export interface Login {
   email: string,
   password: string
 }
-interface Register {
+export interface Register {
   name: string,
   email: string,
   password: string,
-  confirmPassword: string
+  passwordConfirm: string
 }
 type authType = 'login' | 'register' | 'logout'
 export const useAuthApiHook = () => {

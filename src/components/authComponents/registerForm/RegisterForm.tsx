@@ -1,8 +1,13 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useForm, Validatable } from '../../../hooks/useForm';
+import { AuthContextHook } from '../../../store/authContext/auth-context';
 
 export const RegisterForm = () => {
+
+  const AuthContext = useContext(AuthContextHook);
+  const {onRegister} = AuthContext;
+
   const [validName, setValidName] = useState({ isValid: false, leftInput: false })
   const [validEmail, setValidEmail] = useState({ isValid: false, leftInput: false });
   const [validPassword, setValidPassword] = useState({ isValid: false, leftInput: false });
@@ -120,8 +125,9 @@ export const RegisterForm = () => {
       setValidForm((prev) => {
         return { ...prev, isValid: true }
       })
+      return;
     }
-    console.log('form valido')
+    onRegister(name, email, password, passwordConfirm)
   }
 
 
