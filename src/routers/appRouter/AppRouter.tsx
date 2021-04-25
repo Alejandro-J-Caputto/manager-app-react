@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { Authorization } from '../../pages/authPages/Authorization'
 import { AuthContextHook } from '../../store/authContext/auth-context'
@@ -6,7 +6,14 @@ import { ManagerAppRouter } from '../managerAppRouter/ManagerAppRouter'
 
 export const AppRouter = () => {
   const AuthContext = useContext(AuthContextHook);
-  const { isLoggedIn } = AuthContext;
+  const { isLoggedIn, onCheckToken } = AuthContext;
+ 
+  useEffect(() => {
+    onCheckToken()
+    // console.log(memoCheckToken())
+   return () => {
+   }
+  }, [onCheckToken])
   return (
     <BrowserRouter>
       <Switch>

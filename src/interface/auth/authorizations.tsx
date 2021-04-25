@@ -11,6 +11,11 @@ export interface RegisterResponse {
   token: string;
   newUser: User;
 }
+
+export interface CheckTokenResponse {
+  status: string,
+  user: User;
+}
 export interface User {
   role?: string;
   active?: boolean;
