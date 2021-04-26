@@ -7,8 +7,6 @@ export const LoginForm = () => {
 
   const AuthContext = useContext(AuthContextHook);
   const {onLogin} = AuthContext;
-
-
   const [validEmail, setValidEmail] = useState(false);
   const [validPassword, setValidPassword] = useState(false);
   const [leftInputEmail, setLeftInputEmail] = useState(false)
@@ -90,6 +88,7 @@ export const LoginForm = () => {
       return;
     }
     onLogin(email, password);
+
   }
 
 
@@ -104,7 +103,7 @@ export const LoginForm = () => {
             name="email"
             value={email}
             onBlur={onBlurHandler}
-            className={`auth-card__form__input ${(!validEmail && typing && leftInputEmail) || (validForm.isValid && !validEmail) ? 'auth__error' : ''}`}
+            className={`auth-card__form__input ${(!validEmail && typing && leftInputEmail) || (validForm.isValid && !validEmail) ? 'auth__error--input' : ''}`}
             type="email"
             onChange={handleInputChange}
             placeholder="Email Address"
@@ -118,7 +117,7 @@ export const LoginForm = () => {
             value={password}
             onChange={handleInputChange}
             onBlur={onBlurHandler}
-            className={`auth-card__form__input ${(!validPassword && typing && leftInputPassword) || (validForm.isValid && !validPassword) ? 'auth__error' : ''}`}
+            className={`auth-card__form__input ${(!validPassword && typing && leftInputPassword) || (validForm.isValid && !validPassword) ? 'auth__error--input' : ''}`}
             type="password"
             placeholder="password"
             id="password" />

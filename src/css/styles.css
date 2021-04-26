@@ -248,6 +248,37 @@ body {
   margin-bottom: 10px;
   outline: none; }
 
+.notification {
+  position: fixed;
+  height: 30rem;
+  width: 30rem;
+  border-radius: 14px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.3);
+  z-index: 80000;
+  transition: all .6s; }
+  .notification__action {
+    padding: 4rem;
+    font-size: 8rem;
+    color: #28b485; }
+  .notification__message {
+    font-weight: 600; }
+
+.notification--hidden {
+  display: none; }
+
+.wuops {
+  color: #b4252b; }
+
+.searching {
+  color: #edae2c; }
+
 .loading i {
   font-size: 5rem; }
 
@@ -402,6 +433,9 @@ body {
   @media (max-width: 37.5em) {
     .auth__error {
       align-self: center; } }
+
+.auth__error--input {
+  background-color: lightcoral; }
 
 @media (max-width: 37.5em) {
   .auth-card--register {

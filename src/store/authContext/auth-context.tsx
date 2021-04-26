@@ -5,6 +5,24 @@ import { LoginResponse, User, RegisterResponse, CheckTokenResponse } from '../..
 interface RegisterFn {
   onRegister: (name: string, email: string, password: string, passwordConfirm: string) => void;
 }
+const NOTIFICATION_OPTS = {
+  login: {
+    text: 'Succesfully Logged In',
+    icon: 'far fa-check-circle'
+  },
+  registration: {
+    text: 'Succesfully registered',
+    icon: 'far fa-check-circle'
+  },
+  loading: {
+    text: 'Activating Super Security!!',
+    icon: 'fas fa-sync fa-spin'
+  },
+  error: {
+    text: 'there was a problem',
+    icon: 'fas fa-exclamation-circle'
+  }
+}
 
 export const AuthContextHook = createContext({
   isLoggedIn: false,
@@ -12,12 +30,13 @@ export const AuthContextHook = createContext({
   onLogout: () => { },
   onLogin: (email: string, password: string) => { },
   onRegister: (name: string, email: string, password: string, passwordConfirm: string) => { },
-  onCheckToken: () => { }
+  onCheckToken: () => { },
 })
 
 
 
-export const AuthContextProvider = ({ children }: { children: ReactChildren | ReactChild }) => {
+
+export const AuthContextProvider = ({ children, onShowNotification, onHideNotification, onNotificationContent }: { children: ReactChildren | ReactChild, onShowNotification: () => void, onHideNotification: () => void, onNotificationContent: (notificationOPT: { text: string, icon: string }) => void }) => {
   const { authHTTP } = useAuthApiHook()
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({})
@@ -25,28 +44,54 @@ export const AuthContextProvider = ({ children }: { children: ReactChildren | Re
 
 
 
+
+
   const logInHandler = async (email: string, password: string) => {
+    onShowNotification();
+    onNotificationContent(NOTIFICATION_OPTS.loading)
     const responseAuth: LoginResponse = await authHTTP({ email, password }, 'login');
-    if (responseAuth.status === 'success') {
-      const user: User = {
-        role: responseAuth.user.role,
-        active: responseAuth.user.active,
-        _id: responseAuth.user._id,
-        name: responseAuth.user.name,
-        email: responseAuth.user.email,
-        img: responseAuth.user.img
+
+    try {
+      if (responseAuth.status === 'success') {
+        onNotificationContent(NOTIFICATION_OPTS.login)
+
+        const user: User = {
+          role: responseAuth.user.role,
+          active: responseAuth.user.active,
+          _id: responseAuth.user._id,
+          name: responseAuth.user.name,
+          email: responseAuth.user.email,
+          img: responseAuth.user.img
+        }
+        setUser(user);
+        setTimeout(() => {
+          onHideNotification();
+          setIsLoggedIn(true);
+        }, 2500);
+
+        localStorage.setItem('reactBearer', `Bearer ${responseAuth.token}`)
       }
-      setUser(user);
-      setIsLoggedIn(true);
-      localStorage.setItem('reactBearer', `Bearer ${responseAuth.token}`)
+
+      if (responseAuth.status === 'fail') {
+        onNotificationContent(NOTIFICATION_OPTS.error);
+        setTimeout(() => {
+          onHideNotification();
+        }, 2500);
+      }
+
+    } catch (error) {
+      console.log(error)
+
     }
   }
 
 
   const registerHandler: RegisterFn["onRegister"] = async (name, email, password, passwordConfirm) => {
+    onShowNotification();
+    onNotificationContent(NOTIFICATION_OPTS.loading);
     const responseAuth: RegisterResponse = await authHTTP({ name, email, password, passwordConfirm }, 'register');
     if (responseAuth.status === 'success') {
-
+      onNotificationContent(NOTIFICATION_OPTS.registration);
       const user: User = {
         role: responseAuth.newUser.role,
         active: responseAuth.newUser.active,
@@ -56,8 +101,17 @@ export const AuthContextProvider = ({ children }: { children: ReactChildren | Re
         img: responseAuth.newUser.img
       }
       setUser(user);
-      setIsLoggedIn(true);
+      setTimeout(() => {
+        onHideNotification();
+        setIsLoggedIn(true);
+      }, 2500);
       localStorage.setItem('reactBearer', `Bearer ${responseAuth.token}`)
+    }
+    if( responseAuth.status === 'fail') {
+      onNotificationContent(NOTIFICATION_OPTS.error);
+      setTimeout(() => {
+        onHideNotification();
+      }, 2500);
     }
   }
 
@@ -102,7 +156,7 @@ export const AuthContextProvider = ({ children }: { children: ReactChildren | Re
       onLogin: logInHandler,
       onRegister: registerHandler,
       user: user,
-      onCheckToken: checkTokenHandler
+      onCheckToken: checkTokenHandler,
     }}>
       {children}
     </AuthContextHook.Provider>

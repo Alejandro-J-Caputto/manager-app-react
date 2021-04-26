@@ -142,7 +142,7 @@ export const RegisterForm = () => {
             onChange={handleInputChange}
             onBlur={onBlurHandler}
             type="text"
-            className={`auth-card__form__input ${(validName.leftInput && !validName.isValid && typing) || (validForm.isValid && !validName.isValid) ? 'auth__error' : ''}`}
+            className={`auth-card__form__input ${(validName.leftInput && !validName.isValid && typing) || (validForm.isValid && !validName.isValid) ? 'auth__error--input' : ''}`}
             placeholder="Name"
             name="name"
             value={name}
@@ -159,7 +159,7 @@ export const RegisterForm = () => {
             onBlur={onBlurHandler}
             type="email"
             value={email}
-            className={`auth-card__form__input ${(!validEmail.isValid && validEmail.leftInput && typing) || (validForm.isValid && !validEmail.isValid) ? 'auth__error' : ''}`}
+            className={`auth-card__form__input ${(!validEmail.isValid && validEmail.leftInput && typing) || (validForm.isValid && !validEmail.isValid) ? 'auth__error--input' : ''}`}
             name="email"
             placeholder="Email Address"
             id="email" />
@@ -171,7 +171,7 @@ export const RegisterForm = () => {
           <input
             onChange={handleInputChange}
             onBlur={onBlurHandler} type="password"
-            className={`auth-card__form__input ${(!validPassword.isValid && validPassword.leftInput && typing) || (validForm.isValid && !validPassword.isValid) ? 'auth__error' : ''}`}
+            className={`auth-card__form__input ${(!validPassword.isValid && validPassword.leftInput && typing) || (validForm.isValid && !validPassword.isValid) ? 'auth__error--input' : ''}`}
             placeholder="Password"
             name="password"
             value={password}
@@ -185,7 +185,7 @@ export const RegisterForm = () => {
             onChange={handleInputChange}
             onBlur={onBlurHandler}
             type="password"
-            className={`auth-card__form__input ${(!validConfirmPass.isValid && validConfirmPass.leftInput && typing) || (validForm.isValid && !validConfirmPass.isValid) ? 'auth__error' : ''}`}
+            className={`auth-card__form__input ${(!validConfirmPass.isValid && validConfirmPass.leftInput && typing) || (validForm.isValid && !validConfirmPass.isValid) ? 'auth__error--input' : ''}`}
             placeholder="Confirm Password"
             value={passwordConfirm}
             name="passwordConfirm"

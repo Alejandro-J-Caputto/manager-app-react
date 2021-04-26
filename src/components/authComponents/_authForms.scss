@@ -198,6 +198,9 @@
 
    }
 }
+.auth__error--input {
+  background-color: lightcoral;
+}
 .auth-card--register  {
 
   @include responsive(phone) {
