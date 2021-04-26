@@ -1,19 +1,15 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { AddWorkspace } from '../../../components/managerAppComponents/createWorkspace/AddWorkspace'
 import { SearchWorkspace } from '../../../components/managerAppComponents/Search/SearchWorkspace'
 import { WorkspacesAll } from '../../../components/managerAppComponents/workspacesAll/WorkspacesAll'
 import { Sidebar } from '../../../components/shared/sidebar/Sidebar'
+import { Workspace } from '../../../interface/app/managerapp'
 import { DynamicContainer } from '../../../layout/dynamicContainer/DynamicContainer'
-import { ManagerContextHook } from '../../../store/managerContext.tsx/manager-context'
 
-export const HomePage = () => {
-  const ManagerCtx = useContext(ManagerContextHook)
-  const {onGetWorkspaces, workspaces} = ManagerCtx;
-  useEffect(() => {
-      onGetWorkspaces()
-  }, [onGetWorkspaces])
 
+// export const HomePage = ()=> {
+export const HomePage = ({workspaces, addWorkspace}:{workspaces:Workspace[], addWorkspace:()=> void}) => {
 
   return (
     <>
