@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useContext } from 'react'
+import React, { useEffect, useState, useMemo, useContext, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useForm, Validatable } from '../../../hooks/useForm'
 import { AuthContextHook } from '../../../store/authContext/auth-context'
@@ -14,6 +14,11 @@ export const LoginForm = () => {
   const [validForm, setValidForm] = useState({ isValid: false, leftIntput: false })
   const { formValues, handleInputChange, customValidator, typing, setTyping } = useForm({ email: '', password: '' })
   const { email, password } = formValues;
+
+
+  const submitButton = useRef<HTMLButtonElement>(null!)
+  const loginForm = useRef<HTMLFormElement>(null!)
+
 
   const passwordIsValid: Validatable = useMemo(() => {
     return {
@@ -79,22 +84,28 @@ export const LoginForm = () => {
     return valid;
   }
 
+  useEffect(() => {
+    submitButton.current.disabled = false
+  }, [email, password])
+
   const onSubmitLoginHandler = (event: React.FormEvent) => {
     event.preventDefault();
+    submitButton.current.disabled = true;
     if (!validEmail || !validPassword) {
+      submitButton.current.disabled = false;
       setValidForm((prev) => {
         return { ...prev, isValid: true }
       })
       return;
     }
     onLogin(email, password);
-
+    // submitButton.current.disabled = false;
   }
 
 
   return (
     <div className="auth-card">
-      <form onSubmit={onSubmitLoginHandler} autoComplete="off" className="auth-card__form">
+      <form ref={loginForm} onSubmit={onSubmitLoginHandler} autoComplete="off" className="auth-card__form">
         <h2 className="heading-secondary u-margin-bottom-small u-margin-top">
           Manager-App
         </h2>
@@ -125,7 +136,7 @@ export const LoginForm = () => {
           {/* <p className="auth__error">The password is required</p> */}
         </div>
         <div className="auth-card__form__group">
-          <button className="btn btn--red" type="submit"> Log in </button>
+          <button ref={submitButton} className="btn btn--red" type="submit"> Log in </button>
         </div>
         <div className="auth-card__form__group u-margin-bottom-small authLink">
           <p className="paragraph u-center-text">Don't you have an account?
