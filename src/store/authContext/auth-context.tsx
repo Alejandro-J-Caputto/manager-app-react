@@ -41,11 +41,6 @@ export const AuthContextProvider = ({ children, onShowNotification, onHideNotifi
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({})
 
-
-
-
-
-
   const logInHandler = async (email: string, password: string) => {
     onShowNotification();
     onNotificationContent(NOTIFICATION_OPTS.loading)
@@ -85,7 +80,6 @@ export const AuthContextProvider = ({ children, onShowNotification, onHideNotifi
     }
   }
 
-
   const registerHandler: RegisterFn["onRegister"] = async (name, email, password, passwordConfirm) => {
     onShowNotification();
     onNotificationContent(NOTIFICATION_OPTS.loading);
@@ -114,7 +108,6 @@ export const AuthContextProvider = ({ children, onShowNotification, onHideNotifi
       }, 2500);
     }
   }
-
 
   const logOutHandler = async () => {
     try {
