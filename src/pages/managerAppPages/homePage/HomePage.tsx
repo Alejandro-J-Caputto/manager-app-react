@@ -21,7 +21,7 @@ export const HomePage = ({workspaces, addWorkspace}:{workspaces:Workspace[], add
           <Switch>
             <Route exact path='/manager-app/home/overview' component={(props:any)=> <WorkspacesAll workspaces={workspaces} {...props}/>}></Route>
             <Route exact path="/manager-app/home/search" component={(props:any) => <SearchWorkspace workspaces={workspaces} {...props}/>}></Route>
-            <Route exact path="/manager-app/home/add" component={AddWorkspace}></Route>
+            <Route exact path="/manager-app/home/add" component={(props:any)=> <AddWorkspace addWorkspace={addWorkspace} {...props}/>}></Route>
           </Switch>
         </DynamicContainer>
         </div>

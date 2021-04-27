@@ -1,17 +1,17 @@
 import React, { createContext, ReactChildren, useCallback, useState } from 'react'
-import { useManagerApiHook } from '../../hooks/useManagerApiHook';
+import { useManagerApiHook, WorspaceBodyHTTP } from '../../hooks/useManagerApiHook';
 import { Workspace, WorkspaceResponse } from '../../interface/app/managerapp';
 
 export const ManagerContextHook = createContext<{
   workspaces: Workspace[];
   onGetWorkspaces: () => void;
-  onCreateWorkspaces: () => void;
+  onCreateWorkspaces: (body: {title: string, img: string}) => void;
   onSetTheme: () => void;
   onCheckTokenManager: () => void;
 }>({
   workspaces: [],
   onGetWorkspaces: ()=> {},
-  onCreateWorkspaces: ()=>{},
+  onCreateWorkspaces: (body: {title: string, img: string})=>{},
   onSetTheme:()=>{},
   onCheckTokenManager:()=> {}
 })
@@ -31,8 +31,14 @@ export const ManagerAppContextProvider = ({children}: {children: ReactChildren |
     setWorkspaces(responseManager.workspace)
   }, [managerHTTP])
 
-  const createWorkspace = async () => {
-
+  const createWorkspace = async (body: {title: string, img: string}) => {
+    const bodyRequest:WorspaceBodyHTTP = {
+      title: body.title,
+      img: body.img
+    }
+    console.log(bodyRequest)
+    const managerResponse = await managerHTTP (bodyRequest, 'workspace', 'POST');
+    setWorkspaces(managerResponse.workspace)
   }
 
   const setTheme = async () => {
