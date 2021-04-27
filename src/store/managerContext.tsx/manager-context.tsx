@@ -30,13 +30,12 @@ export const ManagerAppContextProvider = ({children}: {children: ReactChildren |
     const responseManager:WorkspaceResponse = await managerHTTP(null, 'workspace', 'GET');
     setWorkspaces(responseManager.workspace)
   }, [managerHTTP])
-
+  
   const createWorkspace = async (body: {title: string, img: string}) => {
     const bodyRequest:WorspaceBodyHTTP = {
       title: body.title,
       img: body.img
     }
-    console.log(bodyRequest)
     const managerResponse = await managerHTTP (bodyRequest, 'workspace', 'POST');
     setWorkspaces(managerResponse.workspace)
   }
