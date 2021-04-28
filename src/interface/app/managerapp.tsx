@@ -13,6 +13,41 @@ export interface Workspace {
   todoLists: TodoLists[];
 }
 
+export interface AddTodoResponse {
+  status:  string;
+  newTodo: NewTodo;
+}
+export interface NewTodo {
+  date:     Date;
+  done:     boolean;
+  _id:      string;
+  todo:     string;
+  todoList: string;
+  user:     string;
+  __v:      number;
+}
+
+export interface TodoListResponse {
+  status:   string;
+  todoList: TodoLists[];
+}
+
+export interface NewTodoListResponse {
+  status:      string;
+  message:     string;
+  newTodoList: NewTodoList;
+}
+
+export interface NewTodoList {
+  date:    Date;
+  active:  boolean;
+  _id:     string;
+  name:    string;
+  project: Project;
+  user:    User;
+  todos:  Todo[];
+  __v:     number;
+}
 export interface TodoList {
   _id:  string;
   name: string;

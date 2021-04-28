@@ -756,7 +756,7 @@ body {
 .todoList-wrapper {
   padding: 2rem;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   flex-wrap: wrap;
   z-index: 1000; }
   @media (max-width: 37.5em) {

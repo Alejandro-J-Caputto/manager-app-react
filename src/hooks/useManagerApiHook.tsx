@@ -1,14 +1,27 @@
 import { useCallback } from 'react'
 
 export interface WorspaceBodyHTTP {
-    title: string,
-    img: string
+  title: string,
+  img: string
+}
+export interface TodoListHTTP {
+  _id: string
+}
+export interface NewTodoListHTTPBody {
+  name: string,
+  project: string
+}
+
+export interface NewTodoHTTPBody {
+  todo: string,
+  todoList:string
 }
 
 export const useManagerApiHook = () => {
 
-  const managerHTTP = useCallback(async (body: WorspaceBodyHTTP | null, endpoint?: string, request_type = 'GET') => {
-    const API_URL: string = `https://manager-app-v2.herokuapp.com/api/todoapp/v1`
+  const managerHTTP = useCallback(async (body: WorspaceBodyHTTP | NewTodoHTTPBody | NewTodoListHTTPBody | TodoListHTTP["_id"] | null, endpoint?: string, request_type = 'GET') => {
+    // const API_URL: string = `https://manager-app-v2.herokuapp.com/api/todoapp/v1`
+    const API_URL: string = `http://localhost:8000/api/todoApp/v1`
     try {
       const CONFIG = {
         method: request_type,
@@ -26,7 +39,7 @@ export const useManagerApiHook = () => {
       console.warn(error);
     }
 
-    
+
   }, [])
-  return {managerHTTP}
+  return { managerHTTP }
 }
