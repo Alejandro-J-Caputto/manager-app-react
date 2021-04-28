@@ -25,6 +25,10 @@ export const useTodoListsApi = () => {
     }
   }
 
+  const deleteToDoList = async (todoListId:string) => {
+    await managerHTTP(null, `todoList/${todoListId}`, 'DELETE');
+  }
+
   const addNewTodo = async (val: string, todoListID: string) => {
     const bodyRequest = { todo: val, todoList: todoListID }
     const responseManager: AddTodoResponse = await managerHTTP(bodyRequest, 'todo', 'POST');
@@ -42,5 +46,5 @@ export const useTodoListsApi = () => {
 
 
 
-  return { getTodoListsById, addNewTodoList, addNewTodo, updateStatusTodo }
+  return { getTodoListsById, addNewTodoList, addNewTodo, updateStatusTodo, deleteToDoList }
 }

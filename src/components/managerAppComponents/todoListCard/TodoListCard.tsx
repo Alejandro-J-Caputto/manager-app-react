@@ -5,6 +5,7 @@ import { Todo } from '../../../interface/app/managerapp'
 import { TodoItem } from '../todoItem/TodoItem';
 
 interface TodoListCardContent {
+  onModalControlHandler: ()=> void,
   id: string,
   project: {
     _id: string,
@@ -12,10 +13,11 @@ interface TodoListCardContent {
   },
   todos: Todo[],
   titleTodoList: string,
+  onSetTodoListID: React.Dispatch<React.SetStateAction<string | undefined>>
 
 }
 
-export const TodoListCard = ({ id, project, todos, titleTodoList }: TodoListCardContent) => {
+export const TodoListCard = ({ onModalControlHandler, onSetTodoListID ,id, project, todos, titleTodoList }: TodoListCardContent) => {
 
   const { addNewTodo } = useTodoListsApi();
   const [todosCard, setTodosCard] = useState(todos)
@@ -44,11 +46,11 @@ export const TodoListCard = ({ id, project, todos, titleTodoList }: TodoListCard
     <div data-id={id} className="todoList-card card-grid">
       <div className="todoList-card__head">
         <input type="text" onChange={handleInputChange} value={title} name="name" className="todoList-card__head__title" />
-        <i className="fas fa-trash-alt"></i>
+        <i onClick={()=> { onModalControlHandler(); onSetTodoListID(id)}} className="fas fa-trash-alt"></i>
       </div>
       <ul className="todoList-card__body">
         {todosCard.length !== 0 && todosCard.map((todo: Todo | any) => {
-          return <TodoItem key={todo._id} id={todo._id} done={todo.done} currValue={todo.todo} />
+          return <TodoItem  key={todo._id} id={todo._id} done={todo.done} currValue={todo.todo} />
         })}
       </ul>
       <div className="todoList-card__add__item">

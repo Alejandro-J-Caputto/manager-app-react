@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useForm } from '../../../hooks/useForm';
 import { useTodoListsApi } from '../../../hooks/useTodoListsApi';
 interface Todo {
+ 
   id: string,
   currValue: string,
   done: boolean

@@ -248,6 +248,104 @@ body {
   margin-bottom: 10px;
   outline: none; }
 
+.overlay {
+  position: absolute;
+  min-height: 100%;
+  height: max-content;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 1000; }
+
+.modal {
+  height: 50%;
+  width: 70%;
+  background-image: linear-gradient(to right bottom, rgba(66, 165, 245, 0.6), rgba(13, 71, 161, 0.4));
+  z-index: 2000;
+  position: absolute;
+  border-radius: 14px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  flex-direction: column; }
+  @media (max-width: 37.5em) {
+    .modal {
+      height: 50vh;
+      position: fixed; } }
+  .modal-content {
+    display: flex;
+    flex-direction: column; }
+
+.modal__title {
+  text-align: center;
+  padding: 3rem;
+  color: #fff; }
+
+.modal__body {
+  display: flex;
+  color: #fff;
+  text-align: center;
+  padding: 2rem;
+  flex-wrap: wrap; }
+
+.modal__button {
+  padding: 2rem;
+  align-self: center; }
+  @media (max-width: 37.5em) {
+    .modal__button {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1; } }
+  .modal__button button:not(:last-child) {
+    margin-right: 5rem; }
+    @media (max-width: 37.5em) {
+      .modal__button button:not(:last-child) {
+        margin-right: 0rem; } }
+  .modal__button--confirm {
+    background-color: #28b485; }
+  .modal__button--cancel {
+    background-color: #b4252b; }
+
+.modal__close {
+  cursor: pointer;
+  align-self: flex-end;
+  color: #fff;
+  text-align: end;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  padding: 3rem; }
+
+.modal__form {
+  align-self: center; }
+
+.modal__label {
+  width: 100%;
+  text-align: start;
+  padding: .4rem 2rem;
+  transition: all .1s; }
+
+.modal__input {
+  font-size: inherit;
+  font-family: inherit;
+  width: 100%;
+  padding: 1.8rem 2rem;
+  border-radius: 6px; }
+
+.modal__input:placeholder-shown ~ .modal__label {
+  visibility: hidden; }
+
+.hidden {
+  display: none; }
+
+/* align-content: center; */
+/* align-items: center; */
 .notification {
   position: fixed;
   height: 30rem;
