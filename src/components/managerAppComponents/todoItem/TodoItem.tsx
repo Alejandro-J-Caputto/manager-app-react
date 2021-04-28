@@ -17,15 +17,18 @@ export const TodoItem = ({ id, currValue, done }: Todo) => {
     setIsDone(response)
 
   }
-
+  const dragStartHandler = (event: React.DragEvent) => {
+    event.dataTransfer.setData('text/plain', id);
+    event.dataTransfer.effectAllowed = 'move';
+  }
 
 
   const { formValues: todoContent, handleInputChange: handleTodoChange } = useForm({ todoText: currValue });
   const { todoText } = todoContent;
 
   return (
-    <li className="todoList-card__body__item">
-      <input value={todoText} name="todoText" onChange={handleTodoChange} id={id} type="text" className="todo" />
+    <li draggable={true} onDragStart={dragStartHandler} className="todoList-card__body__item">
+      <input  value={todoText} name="todoText" onChange={handleTodoChange} id={id} type="text" className="todo" />
       {isDone && <i onClick={onIsDone} className="far fa-check-square checkbox"></i>}
       {!isDone && <i onClick={onIsDone} className="far fa-square done checkbox"></i>}
     </li>

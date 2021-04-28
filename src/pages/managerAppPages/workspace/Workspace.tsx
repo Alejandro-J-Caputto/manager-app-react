@@ -7,6 +7,7 @@ import { Modal } from '../../../components/shared/modal/Modal';
 export const WorkspaceView = ({workspaces}:{workspaces:Workspace[]}) => {
 
   const {deleteToDoList} = useTodoListsApi();
+  const [update, setUpdate] = useState<boolean>();
   const {workspaceID}= useParams<{workspaceID:string}>();
   const {getTodoListsById, addNewTodoList} = useTodoListsApi();
   const newListTitle = useRef<HTMLInputElement>(null)
@@ -30,6 +31,11 @@ export const WorkspaceView = ({workspaces}:{workspaces:Workspace[]}) => {
     })
     modalControlHandler();
   }
+  const updateHandler =  () => {
+    return new Promise((res, rej) => {
+      res(setUpdate(!update))
+    })
+  }
 
   const onAddNewList = async (val: string) => {
     const response = await addNewTodoList(newListTitle.current!.value, workspaceID)
@@ -49,18 +55,20 @@ export const WorkspaceView = ({workspaces}:{workspaces:Workspace[]}) => {
   useEffect(() => {
     async function getTodoLists() {
       const response = await getTodoListsById(workspaceID);
-      setTodoLists(response!)
+      setTodoLists((prevTodoLists:TodoLists[]) => {
+        return response!
+      })
+  
     }
     getTodoLists();
-    
-  }, [workspaceID, getTodoListsById])
+  }, [workspaceID, getTodoListsById, update])
   return (
     <>
    {modalIsShown && <Modal onClose={modalControlHandler} onDeleteTodoList={confirmTodoListDeleteModal}></Modal>}
     <div className="section-workspace" style={workspaceBackgroundStyle}>
       <div className="todoList-wrapper">
         {todoLists!.map((todoList:TodoLists)=> {
-          return <TodoListCard onModalControlHandler={modalControlHandler} onSetTodoListID={setTodoListID} id={todoList._id} titleTodoList={todoList.name} todos={!todoList.todos.length ? []: todoList.todos} project={todoList.project} key={todoList._id} />
+          return <TodoListCard key={todoList._id + todoList.todos.length} onUpdate={updateHandler} onModalControlHandler={modalControlHandler} onSetTodoListID={setTodoListID} id={todoList._id} titleTodoList={todoList.name} todos={!todoList.todos.length ? []: todoList.todos} project={todoList.project}  />
         })}
         <form onSubmit={handleAddNewList} className="add__card">
           <input ref={newListTitle} type="text" placeholder="Add a new list"/>

@@ -15,7 +15,6 @@ export const useForm = <T extends Object>(initialState: T) => {
 
   const handleInputChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
     let { name, value } = target
-    console.log(name, value)
     setFormValues((prevValues) => {
       setTyping(true)
       return {
