@@ -4,7 +4,7 @@ import { useUserProfileApi } from '../../../hooks/useUserProfileApi';
 import { RegisterForm } from '../../../interface/app/managerapp';
 import { AuthContextHook } from '../../../store/authContext/auth-context';
 
-export const ProfileForm = ({ classes }: { classes: string }) => {
+export const ProfileForm = ({ classes, onShow, onHide, onContent }: { classes: string, onShow:()=>void, onHide:()=>void, onContent:(notificationOPT: { text: string, icon: string })=>void }) => {
   const AuthContext = useContext(AuthContextHook);
   const { user } = AuthContext;
   const [error, setError] = useState(false);
@@ -47,8 +47,23 @@ export const ProfileForm = ({ classes }: { classes: string }) => {
       password
     }
 
-    const response = await patchUserData(form);
-    console.log(response)
+    const content = {text: 'User data updated sucesfully', icon:'far fa-check-circle' }
+    try {
+      await patchUserData(form);
+      onShow()
+      onContent(content)
+      setTimeout(()=> {
+        onHide()
+      },1000)
+    } catch (error) {
+      content.text = 'Wuops something went wrong';
+      content.icon = 'fas fa-exclamation-circle'
+      onShow()
+      onContent(content)
+      setTimeout(()=> {
+        onHide()
+      },1000)
+    }
 
   }
 

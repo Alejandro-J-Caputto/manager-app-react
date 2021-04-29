@@ -16,7 +16,7 @@ export const Navbar = () => {
           <i className="navbar__logo fab fa-pied-piper-square"></i>
         </Link>
         <div className="workspace__name">
-          <span>Sr. Patata</span>
+          <span>{user.name}</span>
         </div>
       </div>
       <div className="navbar__list">

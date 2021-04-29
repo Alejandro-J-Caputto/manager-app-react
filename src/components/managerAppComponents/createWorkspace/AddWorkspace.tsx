@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
+import { RouteComponentProps } from 'react-router-dom';
 
-export const AddWorkspace = ({ addWorkspace }: { addWorkspace: (bodyRequest: {title: string, img: string}) => void }) => {
+export const AddWorkspace = ({ history ,addWorkspace }: { history: RouteComponentProps['history'], addWorkspace: (bodyRequest: {title: string, img: string}) => void }) => {
 
   const titleInput = useRef<HTMLInputElement>(null);
   const cardList = useRef<HTMLUListElement>(null);
@@ -18,6 +19,7 @@ export const AddWorkspace = ({ addWorkspace }: { addWorkspace: (bodyRequest: {ti
         img: theme
       }
       addWorkspace(body)
+      history.push('/manager-app/home/overview');
     } else {
       setError(true);
     }

@@ -22,7 +22,7 @@ export const AppRouter = ({onShowNotification, notificationIsShow, notificationC
           {!isLoggedIn && <Route path="/auth" component={Authorization}></Route>}
           <ManagerAppContextProvider>
           {isLoggedIn && <Route path="/manager-app" component={ManagerAppRouter}></Route>}
-          {isLoggedIn ? <Redirect to="/manager-app/home/overview" /> : <Redirect to="/auth/login" />}
+          {isLoggedIn ? <Redirect to={`${localStorage.getItem('lastPath')}`} /> : <Redirect to="/auth/login" />}
           </ManagerAppContextProvider>
       </Switch>
     </BrowserRouter>

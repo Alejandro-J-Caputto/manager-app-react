@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useMemo, useContext, useRef } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, RouteComponentProps } from 'react-router-dom'
 import { useForm, Validatable } from '../../../hooks/useForm'
 import { AuthContextHook } from '../../../store/authContext/auth-context'
 
-export const LoginForm = () => {
-
+export const LoginForm = ({history}:{history:RouteComponentProps['history']}) => {
   const AuthContext = useContext(AuthContextHook);
   const {onLogin} = AuthContext;
   const [validEmail, setValidEmail] = useState(false);
@@ -99,6 +98,9 @@ export const LoginForm = () => {
       return;
     }
     onLogin(email, password);
+    // const lastPath = localStorage.getItem('lastPath');
+    // history.push(`${lastPath}`)
+    history.replace('/manager-app/home/overview')
     // submitButton.current.disabled = false;
   }
 

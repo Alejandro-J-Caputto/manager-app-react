@@ -45,8 +45,7 @@ export const useTodoListsApi = () => {
   }
 
   const dragAndDropTodo = async (todoID:string, todoListID:string) => {
-    const responseManager = await managerHTTP(null, `todo/${todoID}/${todoListID}`, 'PATCH');
-
+     await managerHTTP(null, `todo/${todoID}/${todoListID}`, 'PATCH');
   }
 
 

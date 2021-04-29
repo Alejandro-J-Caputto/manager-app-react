@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { RegisterForm, UpdatedUserResponse, UpdatePass } from '../interface/app/managerapp'
 import { useManagerApiHook } from './useManagerApiHook'
 export const useUserProfileApi = () => {
@@ -29,7 +29,7 @@ export const useUserProfileApi = () => {
     try {
       const request = await fetch(`http://localhost:8000/api/todoApp/v1/upload/users`, CONFIG)
       const response = await request.json();
-      console.log(response)
+      return response
     } catch (error) {
       console.log(error)
     }

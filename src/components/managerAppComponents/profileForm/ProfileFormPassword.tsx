@@ -3,13 +3,13 @@ import { useForm, Validatable } from '../../../hooks/useForm';
 import { useUserProfileApi } from '../../../hooks/useUserProfileApi';
 
 
-export const ProfileFormPassword = ({ classes }: { classes: string }) => {
+export const ProfileFormPassword = ({ classes, onShow, onHide, onContent }: { classes: string, onShow: () => void, onHide: () => void, onContent: (notificationOPT: { text: string, icon: string }) => void }) => {
   const [error, setError] = useState(false);
   const { updatePassword } = useUserProfileApi();
   const { formValues, handleInputChange, customValidator } = useForm({
     password: '',
     passwordReset: '',
-    passwordConfirm: ''
+    passwordConfirm: '' 
 
   });
 
@@ -45,10 +45,24 @@ export const ProfileFormPassword = ({ classes }: { classes: string }) => {
       passwordReset: passwordReset,
       passwordConfirm: passwordConfirm
     }
+    const content = {text: 'Password Sucesfully updated', icon:'far fa-check-circle' }
 
-    const response = await updatePassword(form);
-    console.log(response)
-
+    try {
+      await updatePassword(form);
+      onShow()
+      onContent(content)
+      setTimeout(()=> {
+        onHide()
+      },1000)
+    } catch (error) {
+      content.text = 'Wuops something went wrong';
+      content.icon = 'fas fa-exclamation-circle'
+      onShow()
+      onContent(content)
+      setTimeout(()=> {
+        onHide()
+      },1000)
+    }
   }
 
   return (

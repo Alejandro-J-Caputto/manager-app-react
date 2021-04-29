@@ -795,7 +795,7 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden; }
-  .profile-picture img {
+  .profile-picture div {
     align-self: center;
     background-size: cover;
     background-position: center;

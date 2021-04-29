@@ -1,4 +1,5 @@
 import React, { createContext, ReactChild, ReactChildren, useCallback, useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import { useAuthApiHook } from '../../hooks/useAuthApiHook';
 import { LoginResponse, User, RegisterResponse, CheckTokenResponse } from '../../interface/auth/authorizations';
 
@@ -43,11 +44,11 @@ export const AuthContextHook = createContext<{
 
 
 
-export const AuthContextProvider = ({ children, onShowNotification, onHideNotification, onNotificationContent }: { children: ReactChildren | ReactChild, onShowNotification: () => void, onHideNotification: () => void, onNotificationContent: (notificationOPT: { text: string, icon: string }) => void }) => {
+export const AuthContextProvider = ({ children, onShowNotification, onHideNotification, onNotificationContent }: {children: ReactChildren | ReactChild, onShowNotification: () => void, onHideNotification: () => void, onNotificationContent: (notificationOPT: { text: string, icon: string }) => void }) => {
   const { authHTTP } = useAuthApiHook()
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({})
-
+  const history = useHistory();
   const logInHandler = async (email: string, password: string) => {
     onShowNotification();
     onNotificationContent(NOTIFICATION_OPTS.loading)
@@ -72,6 +73,7 @@ export const AuthContextProvider = ({ children, onShowNotification, onHideNotifi
         }, 2500);
 
         localStorage.setItem('reactBearer', `Bearer ${responseAuth.token}`)
+
       }
 
       if (responseAuth.status === 'fail') {
@@ -102,6 +104,7 @@ export const AuthContextProvider = ({ children, onShowNotification, onHideNotifi
         img: responseAuth.newUser.img
       }
       setUser(user);
+      history.replace('/manager-app')
       setTimeout(() => {
         onHideNotification();
         setIsLoggedIn(true);
