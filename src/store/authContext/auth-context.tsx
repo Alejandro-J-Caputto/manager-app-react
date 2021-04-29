@@ -24,7 +24,14 @@ const NOTIFICATION_OPTS = {
   }
 }
 
-export const AuthContextHook = createContext({
+export const AuthContextHook = createContext<{
+  isLoggedIn: boolean;
+  user: User;
+  onLogout: () => void;
+  onLogin: (email: string, password: string) => void;
+  onRegister: (name: string, email: string, password: string, passwordConfirm: string) => void;
+  onCheckToken: () => void;
+}>({
   isLoggedIn: false,
   user: {},
   onLogout: () => { },

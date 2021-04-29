@@ -64,6 +64,25 @@ export interface TodoLists {
   todos:   Todo[];
 }
 
+export interface RegisterForm {
+  name: string
+  email: string,
+  password: string,
+}
+export interface UpdatedUserResponse {
+  status:     string;
+  updatedUser: UpdatedUser;
+}
+
+export interface UpdatedUser {
+  role:   string;
+  active: boolean;
+  google: boolean;
+  _id:    string;
+  name:   string;
+  email:  string;
+  __v:    number;
+}
 export interface Todo {
   done:     boolean;
   _id:      string;
@@ -86,4 +105,9 @@ export interface User {
   email?: string;
   password?: string;
   __v?: number;
+}
+export interface UpdatePass {
+  password: string,
+  passwordReset: string,
+  passwordConfirm: string
 }
