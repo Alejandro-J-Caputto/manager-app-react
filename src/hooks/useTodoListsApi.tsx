@@ -45,7 +45,12 @@ export const useTodoListsApi = () => {
   }
 
   const dragAndDropTodo = async (todoID:string, todoListID:string) => {
-     await managerHTTP(null, `todo/${todoID}/${todoListID}`, 'PATCH');
+    try {
+      await managerHTTP(null, `todo/${todoID}/${todoListID}`, 'PATCH');
+      
+    } catch (error) { 
+      console.log(error)
+    }
   }
 
 

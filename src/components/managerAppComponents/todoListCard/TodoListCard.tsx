@@ -5,6 +5,7 @@ import { Todo } from '../../../interface/app/managerapp'
 import { TodoItem } from '../todoItem/TodoItem';
 
 interface TodoListCardContent {
+ 
   onModalControlHandler: () => void,
   onUpdate: ()=> Promise<unknown>,
   id: string,

@@ -7,7 +7,6 @@ import { WorkspaceView } from '../../pages/managerAppPages/workspace/Workspace'
 import { ManagerContextHook } from '../../store/managerContext.tsx/manager-context'
 
 export const ManagerAppRouter = ({location}: {location:RouteComponentProps['location']}) => {
-  console.log(location.pathname)
   localStorage.setItem('lastPath', location.pathname)
   const ManagerCtx = useContext(ManagerContextHook)
   const {onGetWorkspaces, workspaces, onCreateWorkspaces} = ManagerCtx;

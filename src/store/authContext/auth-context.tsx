@@ -1,5 +1,4 @@
 import React, { createContext, ReactChild, ReactChildren, useCallback, useState } from 'react'
-import { useHistory } from 'react-router-dom';
 import { useAuthApiHook } from '../../hooks/useAuthApiHook';
 import { LoginResponse, User, RegisterResponse, CheckTokenResponse } from '../../interface/auth/authorizations';
 
@@ -48,7 +47,6 @@ export const AuthContextProvider = ({ children, onShowNotification, onHideNotifi
   const { authHTTP } = useAuthApiHook()
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({})
-  const history = useHistory();
   const logInHandler = async (email: string, password: string) => {
     onShowNotification();
     onNotificationContent(NOTIFICATION_OPTS.loading)
@@ -148,7 +146,6 @@ export const AuthContextProvider = ({ children, onShowNotification, onHideNotifi
     } else {
       setIsLoggedIn(false);
       localStorage.setItem('reactBearer', 'logout');
-      history.push('/auth');
       setUser({});
     }
   }, [authHTTP])

@@ -26,7 +26,6 @@ export const ManagerAppContextProvider = ({children}: {children: ReactChildren |
   const [workspaces, setWorkspaces] = useState<Workspace[]>([]);
 
   const getWorkspaces = useCallback(async () => {
-    console.log('me dispare')
     const responseManager:WorkspaceResponse = await managerHTTP(null, 'workspace', 'GET');
     setWorkspaces(responseManager.workspace)
   }, [managerHTTP])

@@ -8,13 +8,13 @@ export const SearchWorkspace = ({ workspaces }: { workspaces: Workspace[] }) => 
   const [noFound, setNoFound] = useState(false);
   const [filteredSpaces, setFilteredSpaces] = useState([...workspaces])
   const [searching, setSearching] = useState(false)
-  const searchHandler = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNoFound(false)
     setSearching(true)
     setSearch(event.target.value)
   }
   useEffect(() => {
-    setTimeout(()=> {
+    const timeSearch = setTimeout(()=> {
       setSearching(false);
     }, 1000)
     setFilteredSpaces((filteredPrev) => {
@@ -26,7 +26,10 @@ export const SearchWorkspace = ({ workspaces }: { workspaces: Workspace[] }) => 
         return workspace.title.toLowerCase().includes(search!.trim())
       })
     })
-  }, [search, workspaces])
+    return () => {
+      clearInterval(timeSearch)
+    }
+  }, [search, workspaces, filteredSpaces.length])
 
   return (
     <>

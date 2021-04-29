@@ -21,9 +21,9 @@ export interface NewTodoHTTPBody {
 export const useManagerApiHook = () => {
 
   const managerHTTP = useCallback(async (body: WorspaceBodyHTTP | NewTodoHTTPBody | UpdatePass | FormData | RegisterForm |NewTodoListHTTPBody | TodoListHTTP["_id"] | null, endpoint?: string, request_type = 'GET') => {
-    const API_URL: string = `https://manager-app-v2.herokuapp.com/api/todoapp/v1`
+    // const API_URL: string = `https://manager-app-v2.herokuapp.com/api/todoapp/v1`
     
-    // const API_URL: string = `http://localhost:8000/api/todoApp/v1`
+    const API_URL: string = `http://localhost:8000/api/todoApp/v1`
     try {
       const CONFIG = {
         method: request_type,
