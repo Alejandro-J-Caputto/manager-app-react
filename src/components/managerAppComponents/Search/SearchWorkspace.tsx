@@ -5,16 +5,24 @@ import { WorkspaceCard } from '../../shared/workspaceCard/WorkspaceCard'
 export const SearchWorkspace = ({ workspaces }: { workspaces: Workspace[] }) => {
 
   const [search, setSearch] = useState<string>('')
+  const [noFound, setNoFound] = useState(false);
   const [filteredSpaces, setFilteredSpaces] = useState([...workspaces])
   const [searching, setSearching] = useState(false)
   const searchHandler = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNoFound(false)
     setSearching(true)
     setSearch(event.target.value)
   }
   useEffect(() => {
+    setTimeout(()=> {
+      setSearching(false);
+    }, 1000)
     setFilteredSpaces((filteredPrev) => {
       return [...workspaces].filter(workspace => {
         setSearching(false)
+        if(!filteredSpaces.length) {
+          setNoFound(true)
+        }
         return workspace.title.toLowerCase().includes(search!.trim())
       })
     })
@@ -35,7 +43,7 @@ export const SearchWorkspace = ({ workspaces }: { workspaces: Workspace[] }) => 
             autoFocus={true}
             className="workspace-form__title-input" />
           <label className="workspace-form__title-label" htmlFor="search">Search...</label>
-          {!filteredSpaces.length && <p className="search__fail">ERROR PLACEHOLDER</p>}
+          {noFound && <p className="search__fail">ERROR PLACEHOLDER</p>}
           {!workspaces.length && <p className="message-empty" style={{ textAlign: 'center' }}>
             YOU DON'T HAVE A CREATED A WORKSPACE YET
           </p>}

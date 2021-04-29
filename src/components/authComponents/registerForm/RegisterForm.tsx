@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import { useForm, Validatable } from '../../../hooks/useForm';
 import { AuthContextHook } from '../../../store/authContext/auth-context';
 
 export const RegisterForm = () => {
+  // const history = useHistory();
 
   const AuthContext = useContext(AuthContextHook);
   const {onRegister} = AuthContext;
@@ -128,6 +129,7 @@ export const RegisterForm = () => {
       return;
     }
     onRegister(name, email, password, passwordConfirm)
+    // history.replace('/manager-app/home/overview')
   }
 
 

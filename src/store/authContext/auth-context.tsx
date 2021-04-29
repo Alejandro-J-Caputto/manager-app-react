@@ -104,7 +104,6 @@ export const AuthContextProvider = ({ children, onShowNotification, onHideNotifi
         img: responseAuth.newUser.img
       }
       setUser(user);
-      history.replace('/manager-app')
       setTimeout(() => {
         onHideNotification();
         setIsLoggedIn(true);
@@ -125,6 +124,7 @@ export const AuthContextProvider = ({ children, onShowNotification, onHideNotifi
       const responseAuth = await authHTTP(null, 'logout', 'GET');
       if (responseAuth.status === 'success') {
         localStorage.setItem('reactBearer', 'logout');
+        localStorage.removeItem('lastPath');
         setIsLoggedIn(false);
       }
     } catch (error) {
@@ -148,6 +148,7 @@ export const AuthContextProvider = ({ children, onShowNotification, onHideNotifi
     } else {
       setIsLoggedIn(false);
       localStorage.setItem('reactBearer', 'logout');
+      history.push('/auth');
       setUser({});
     }
   }, [authHTTP])
