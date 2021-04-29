@@ -14,8 +14,8 @@ type authType = 'login' | 'register' | 'logout' | 'checkToken';
 export const useAuthApiHook = () => {
 
   const authHTTP = useCallback(async (body: Login | Register | null, authType: authType = 'login', REQUEST_TYPE = 'POST') => {
-    // const API_URL: string = `https://manager-app-v2.herokuapp.com/api/todoapp/v1/auth`;
-    const API_URL: string = `http://localhost:8000/api/todoApp/v1/auth`;
+    const API_URL: string = `https://manager-app-v2.herokuapp.com/api/todoapp/v1/auth`;
+    // const API_URL: string = `http://localhost:8000/api/todoApp/v1/auth`;
 
     try {
       const CONFIG = {
