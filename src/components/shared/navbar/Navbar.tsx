@@ -1,12 +1,13 @@
 import React, { useContext } from 'react'
 import { Link, NavLink } from "react-router-dom";
+import ProfilePic from '../../../assets/img/user-img-default.png'
 import { AuthContextHook } from '../../../store/authContext/auth-context';
 
 export const Navbar = () => {
 
   const AuthContext = useContext(AuthContextHook);
 
-  const {onLogout} = AuthContext;
+  const {onLogout, user} = AuthContext;
 
   return (
     <nav className="navbar">
@@ -28,7 +29,7 @@ export const Navbar = () => {
         </NavLink>
 
         <NavLink className="navbar__list-item" activeClassName="active-link-nav" to="/manager-app/profile">
-          <img src="" alt="profile"/>
+          <img className="navbar__list-item-user-photo" src={user.img ? user.img : ProfilePic} alt="profile"/>
         </NavLink>
 
         <NavLink onClick={onLogout} className="navbar__list-item" activeClassName="active-link-nav"  to="/auth/login">

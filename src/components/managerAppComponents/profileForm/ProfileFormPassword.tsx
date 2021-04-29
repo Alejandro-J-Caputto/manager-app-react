@@ -1,21 +1,19 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useForm, Validatable } from '../../../hooks/useForm';
 import { useUserProfileApi } from '../../../hooks/useUserProfileApi';
-import { AuthContextHook } from '../../../store/authContext/auth-context';
+
 
 export const ProfileFormPassword = ({ classes }: { classes: string }) => {
   const [error, setError] = useState(false);
-  const {updatePassword} = useUserProfileApi();
-  const AuthContext = useContext(AuthContextHook)
-  const { user } = AuthContext;
-  const { formValues, handleInputChange ,customValidator } = useForm({
+  const { updatePassword } = useUserProfileApi();
+  const { formValues, handleInputChange, customValidator } = useForm({
     password: '',
     passwordReset: '',
     passwordConfirm: ''
 
   });
 
-  const {password, passwordConfirm, passwordReset} = formValues;
+  const { password, passwordConfirm, passwordReset } = formValues;
 
   const passwordIsValid: Validatable = {
     value: passwordReset,
@@ -29,7 +27,7 @@ export const ProfileFormPassword = ({ classes }: { classes: string }) => {
     minLength: 4,
     maxLength: 15,
   }
-  const passwordConfirmIsValid: Validatable =  {
+  const passwordConfirmIsValid: Validatable = {
     value: passwordConfirm,
     valueCompare: passwordReset,
     required: true,

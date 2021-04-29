@@ -56,7 +56,7 @@
   align-self: center;
   // background-color: mediumseagreen;
   width: 80%;
-  & * :not(.profile-picture, .profile-picture img, .error-form){
+  & * :not(.profile-picture, .profile-picture div, .error-form){
     margin-bottom: 2rem;
   }
 }
@@ -73,7 +73,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  & div {
+  & img {
     align-self: center;
     background-size: cover;
     background-position: center;

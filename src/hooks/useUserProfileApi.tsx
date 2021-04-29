@@ -15,5 +15,25 @@ export const useUserProfileApi = () => {
     console.log(managerResponse)
   }
 
-  return { patchUserData, updatePassword };
+  const updateProfilePicture = async (file:File) => {
+    const formData = new FormData();
+    formData.append('file', file, file.name)
+    const CONFIG = {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Authorization': localStorage.getItem('reactBearer')!
+      }
+
+    }
+    try {
+      const request = await fetch(`http://localhost:8000/api/todoApp/v1/upload/users`, CONFIG)
+      const response = await request.json();
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  return { patchUserData, updatePassword, updateProfilePicture };
 }
