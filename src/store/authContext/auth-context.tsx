@@ -48,10 +48,11 @@ export const AuthContextProvider = ({ children, onShowNotification, onHideNotifi
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({})
   const logInHandler = async (email: string, password: string) => {
+    console.log('patata')
     onShowNotification();
     onNotificationContent(NOTIFICATION_OPTS.loading)
     const responseAuth: LoginResponse = await authHTTP({ email, password }, 'login');
-
+    console.log(responseAuth)
     try {
       if (responseAuth.status === 'success') {
         onNotificationContent(NOTIFICATION_OPTS.login)

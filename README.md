@@ -1,70 +1,65 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+<img style="width: 600px; width: 600px;" src="./src/assets/img/manager-shot--1.png"/>
 
-### `npm start`
+# Manager-App React
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Welcome to manager App
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This is an app for testing and improving purposes. Please this is not a fully functional app, is just an experimental application for fun. 
 
-### `npm test`
+##  API
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### The backend is hosted by heroku.
 
-### `npm run build`
+[Traversy-Media](https://manager-app-v2.herokuapp.com "Visit the Api")
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## To access the application you have to be either registerd or logged in.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img style="width: 600px; width: 600px;" src="./src/assets/img/rd-manager.png" />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### ONCE YOU ARE SUCESFULLY LOGGED IN
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Click in the ADD Navigation button and provide
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* Name: Required
+* Theme: Selected by default
 
-## Learn More
+<img style="width: 600px; width: 600px;" src="./src/assets/img/manager-shot-add.png" />
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<br/>
+<br/><br/>
+<br/>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Once the new Space is created you will be redirected. 
 
-### Code Splitting
+Select your new workspace and add a new list. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<img style="width: 600px; width: 600px;" src="./src/assets/img/manager-shot-list.png" />
 
-### Analyzing the Bundle Size
+<br/>
+<br/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### You can mark as checked the todos drag them and drop them.
 
-### Making a Progressive Web App
+<img style="width: 600px; width: 600px;" src="./src/assets/img/manager-shot-drag.png" />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+<br/>
+<br/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Profile
+In this section you can upload a picture and update your personal data.
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+<img style="width: 400px; width: 400px;" src="./src/assets/img/manager-shot--profile.png" />
+
+
+# MORE FEATURES COMING SOON
